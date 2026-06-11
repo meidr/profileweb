@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Directory - FacultyPortal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eef2ed",
+                    "surface": "#f7faf6",
+                    "surface-container-low": "#f1f4f0",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container": "#ecefeb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#73332f",
+                    "secondary-container": "#dae2fd",
+                    "error": "#ba1a1a",
+                    "surface-muted": "#f8fafc",
+                    "surface-dim": "#d8dbd7",
+                    "on-primary-fixed": "#002116",
+                    "surface-bright": "#f7faf6",
+                    "on-primary-fixed-variant": "#00513b",
+                    "inverse-primary": "#8bd6b6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary": "#652925",
+                    "inverse-surface": "#2d312f",
+                    "on-tertiary-fixed": "#3b0908",
+                    "on-secondary-container": "#5c647a",
+                    "primary-container": "#065f46",
+                    "status-active": "#10b981",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-tertiary-container": "#ffb4ad",
+                    "status-inactive": "#94a3b8",
+                    "secondary": "#565e74",
+                    "on-surface": "#181c1a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#1b6b51",
+                    "outline-variant": "#bec9c2",
+                    "secondary-fixed": "#dae2fd",
+                    "surface-variant": "#e0e3df",
+                    "border-subtle": "#e2e8f0",
+                    "surface-container-high": "#e6e9e5",
+                    "on-surface-variant": "#3f4944",
+                    "tertiary-container": "#823f3a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "status-error": "#ef4444",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#8bd6b7",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "status-pending": "#f59e0b",
+                    "outline": "#6f7973",
+                    "background": "#f7faf6",
+                    "primary-fixed": "#a6f2d1",
+                    "surface-container-highest": "#e0e3df",
+                    "on-background": "#181c1a",
+                    "primary": "#004532",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "primary-fixed-dim": "#8bd6b6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "44px",
+                    "container-margin-desktop": "40px",
+                    "container-margin-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom scrollbar for data table */
+        .table-container::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .table-container::-webkit-scrollbar-track {
+            background: theme('colors.surface-muted');
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background-color: theme('colors.outline-variant');
+            border-radius: theme('borderRadius.full');
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface flex min-h-screen">
+<!-- SideNavBar (Admin Central) -->
+<nav class="bg-surface-container-low h-screen w-64 fixed left-0 top-0 hidden md:flex flex-col border-r border-subtle">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary icon-fill">school</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary">Admin Central</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Staff Management</p>
+</div>
+</div>
+<button class="w-full mt-6 bg-primary text-on-primary font-label-md text-label-md py-2 px-4 rounded-lg hover:bg-primary-container hover:text-on-primary-container transition-colors flex items-center justify-center gap-2 h-touch-target">
+<span class="material-symbols-outlined">add</span>
+                New Profile
+            </button>
+</div>
+<div class="flex flex-col h-full py-2 space-y-2 overflow-y-auto">
+<!-- Inactive -->
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<!-- Active -->
+<a class="bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg mx-2 my-1 flex items-center gap-3 px-4 h-touch-target" href="#">
+<span class="material-symbols-outlined icon-fill">groups</span>
+                Directory
+            </a>
+<!-- Inactive -->
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+                Approvals
+            </a>
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Analytics
+            </a>
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto border-t border-subtle p-2">
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+                Support
+            </a>
+<a class="text-on-secondary-container font-label-md text-label-md hover:bg-surface-container-high mx-2 my-1 rounded-lg flex items-center gap-3 px-4 h-touch-target transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface w-full top-0 sticky border-b border-subtle flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-touch-target z-40">
+<!-- Search Bar on Left -->
+<div class="flex-1 max-w-md relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-subtle rounded-lg py-2 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search across portal..." type="text"/>
+</div>
+<div class="flex-1 md:hidden">
+<h2 class="font-headline-md text-headline-md text-primary">FacultyPortal</h2>
+</div>
+<!-- Trailing Icons -->
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="ml-2 w-8 h-8 rounded-full bg-primary-container overflow-hidden border border-subtle cursor-pointer">
+<img alt="Administrator profile avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a university administrator. The lighting is soft and flattering, creating a trustworthy and competent impression. The background is a muted, abstract office setting, adhering to a clean, modern corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASO79JD8zllNXXf1q7mA0jLVUUVJHgzlfxZWdNnN5uwb7ITKqONr-fmDhTddxD3EjIbeZs1_AEZLLXbaxMizfqCf5C8DcoVpJuVJvP1-vGybHnn2oE3LWXgF7e2gpYYEoTwyaGMJl5Gvvo_9t0_20gufQe9B_EQmvHnLZVB7Sd97hdg-PeddnpCpe6OCGpNIDMtBxeaf8DhSV_Y9KyV9zNpbW58qZF1poBc4mX_OoILvs4vvD6ZmZMAEd4s-ooNdTNMCkwo2fIvJs"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-container-margin-mobile md:p-container-margin-desktop flex-1 flex flex-col gap-gutter">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Employee Directory</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Manage institutional staff profiles, visibility, and access credentials.</p>
+</div>
+<div class="flex gap-3">
+<button class="h-touch-target px-4 bg-surface-container-low text-on-surface font-label-md text-label-md border border-subtle rounded-lg hover:bg-surface-container-high transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                        Export List
+                    </button>
+</div>
+</div>
+<!-- Toolbar (Filters & Actions) -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl p-4 flex flex-col md:flex-row gap-4 justify-between items-center shadow-sm">
+<div class="flex flex-col md:flex-row gap-3 w-full md:w-auto flex-1">
+<!-- Local Search -->
+<div class="relative w-full md:max-w-xs">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface border border-subtle rounded-lg py-2 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all h-touch-target" placeholder="Search by Name or NIP..." type="text"/>
+</div>
+<!-- Department Filter -->
+<div class="relative w-full md:w-48">
+<select class="w-full bg-surface border border-subtle rounded-lg py-2 pl-3 pr-8 font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-touch-target cursor-pointer">
+<option value="">All Departments</option>
+<option value="cs">Computer Science</option>
+<option value="bio">Biology</option>
+<option value="eng">Engineering</option>
+<option value="admin">Administration</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+<!-- Status Filter -->
+<div class="relative w-full md:w-40">
+<select class="w-full bg-surface border border-subtle rounded-lg py-2 pl-3 pr-8 font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent h-touch-target cursor-pointer">
+<option value="">All Status</option>
+<option value="active">Active</option>
+<option value="inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<!-- View Toggles (Decorative for High-End feel) -->
+<div class="flex items-center bg-surface-container border border-subtle rounded-lg p-1 hidden lg:flex">
+<button class="w-8 h-8 rounded bg-surface shadow-sm flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 20px;">table_rows</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">grid_view</span>
+</button>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl overflow-hidden shadow-sm flex-1">
+<div class="overflow-x-auto table-container w-full">
+<table class="w-full text-left border-collapse min-w-[1000px]">
+<thead>
+<tr class="bg-surface-muted border-b border-subtle">
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">Employee</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">NIP</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">Position</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">Department</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">Status</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold">Visibility</th>
+<th class="py-4 px-6 font-label-md text-label-md text-on-surface-variant font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle">
+<!-- Row 1 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-subtle flex-shrink-0">
+<img alt="Profile of Dr. Sarah Jenkins" class="w-full h-full object-cover" data-alt="A professional academic portrait of a female professor. She is smiling subtly, set against a pristine, brightly lit university library background. The image evokes intelligence and institutional authority within a modern academic setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANzHCoU_F2y3ifXVSUrLBFBad2ydlSa7WhuIGhFBB8DxcAf2H2-0ybFkBrRpxV6lKBjBOxGEGbjScabaY9sRbQOhbmIDFyPjejeCyYy43lPlTyEOFJNfweT8PQmvdVyYvRW7f_rYkN-Rp75Jw3vREi4OYHaqCDXJ-Mmk88EhFXTtB4AbXM7_ZeJfTeAcPPpQi9Ltk5l4asA12mak6TPNO1y_3ICZNn20lqHuc5kFJwQAkxYof_SctY72zOiBGWNbyvg3OzxWWjDRc"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Dr. Sarah Jenkins</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">s.jenkins@university.edu</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">104859302</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">Associate Professor</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">Computer Science</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-status-active/10 text-status-active border border-status-active/20">
+                                        Active
+                                    </span>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface-variant border border-subtle">
+<span class="material-symbols-outlined" style="font-size: 14px;">public</span>
+                                        Public
+                                    </span>
+</td>
+<td class="py-3 px-6 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="View Detail">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="Edit Profile">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="Download QR">
+<span class="material-symbols-outlined" style="font-size: 20px;">qr_code</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-subtle flex-shrink-0">
+<img alt="Profile of Michael Chang" class="w-full h-full object-cover" data-alt="A professional headshot of a male administrative staff member. He appears focused and approachable, photographed in a well-lit, minimalist corporate office space. The cool tones of the environment reflect functional transparency and modern administration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzI29S3Ba55n2_wF4-NDiGGKZryLjggMthWH5uDc0CmJCsMhFNPMbKEqFjh0JkPf_rFxIpE4XkrAPKZU56XCDsnQONrkaRG9-_aqRfji0m_dlqUJ5hgwlF0tUXNjjJb3jycWrgqlNoVSdAYtIcb4kB9gY1W1Hs8A7iMpOenhJak1ctzJOCWXe0nCIaBO4NhkjJNQbpXtC_isJQwEQ7Jy4omRhKRjLIO3RaKDXs74Fwtaj_rn_DDmio5E16yH0R8StreucO4dLz55M"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold">Michael Chang</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">m.chang@university.edu</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">104859315</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">System Administrator</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface">IT Services</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-status-active/10 text-status-active border border-status-active/20">
+                                        Active
+                                    </span>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant border border-subtle">
+<span class="material-symbols-outlined" style="font-size: 14px;">visibility_off</span>
+                                        Hidden
+                                    </span>
+</td>
+<td class="py-3 px-6 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="View Detail">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="Edit Profile">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="Download QR">
+<span class="material-symbols-outlined" style="font-size: 20px;">qr_code</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Inactive) -->
+<tr class="hover:bg-surface transition-colors group">
+<td class="py-3 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container border border-subtle flex-shrink-0 opacity-60">
+<img alt="Profile of Dr. Emily Rostova" class="w-full h-full object-cover grayscale" data-alt="A subdued, grayscale professional portrait of a former female faculty member. The lighting is flat and neutral, indicating an inactive status. The background is a stark, white institutional wall, devoid of vibrant colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4e5sIkW1xRQBmi-u2lKxswuSHtIsfXB6P73NE3z_duY3gpzKiKCRUKLGjYepfp8V-0APabmTqTBvnJvWr2YVJcRYPU2c67cOGyvxQuBdPk1ObORQClJP5BuhIp_Cjdvkw1NN_bPGpBfYcbpW2pkI6grOFx7bHF4-d7kAyLHERsXWk3_ip2BP0r0bp_c0kPCELGkw6AoprP0V-BFcBoJa5a7VL16GmiI8ER738NU2BS_VJSQTZY_GyOTQhpJhIIPDljEvepnubkt4"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant font-semibold">Dr. Emily Rostova</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">e.rostova@university.edu</p>
+</div>
+</div>
+</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface-variant">104859288</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface-variant">Professor Emerita</td>
+<td class="py-3 px-6 font-body-sm text-body-sm text-on-surface-variant">Biology</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-highest text-on-surface-variant border border-subtle">
+                                        Inactive
+                                    </span>
+</td>
+<td class="py-3 px-6">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container text-on-surface-variant border border-subtle">
+<span class="material-symbols-outlined" style="font-size: 14px;">visibility_off</span>
+                                        Hidden
+                                    </span>
+</td>
+<td class="py-3 px-6 text-right">
+<div class="flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="View Detail">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-low text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors" title="Edit Profile">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+<!-- QR code might be disabled for inactive -->
+<div class="w-8 h-8 flex items-center justify-center text-outline-variant">
+<span class="material-symbols-outlined" style="font-size: 20px;">qr_code</span>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-muted border-t border-subtle px-6 py-3 flex items-center justify-between">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Showing 1 to 3 of 124 entries</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded border border-subtle flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-label-sm text-label-sm flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded border border-subtle text-on-surface font-label-sm text-label-sm flex items-center justify-center hover:bg-surface-container-low">2</button>
+<button class="w-8 h-8 rounded border border-subtle text-on-surface font-label-sm text-label-sm flex items-center justify-center hover:bg-surface-container-low">3</button>
+<span class="text-on-surface-variant px-1">...</span>
+<button class="w-8 h-8 rounded border border-subtle flex items-center justify-center text-on-surface-variant hover:bg-surface-container-low">
+<span class="material-symbols-outlined" style="font-size: 18px;">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-muted w-full py-8 mt-auto border-t border-subtle flex flex-col md:flex-row justify-between items-center px-container-margin-mobile md:px-container-margin-desktop gap-gutter">
+<p class="font-body-sm text-body-sm-mobile md:text-body-sm text-secondary">© 2024 University Institutional Authority</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-body-sm text-body-sm-mobile md:text-body-sm text-secondary hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm-mobile md:text-body-sm text-secondary hover:text-primary transition-colors" href="#">Accessibility</a>
+<a class="font-body-sm text-body-sm-mobile md:text-body-sm text-secondary hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm-mobile md:text-body-sm text-secondary hover:text-primary transition-colors" href="#">Help Desk</a>
+</div>
+</footer>
+</main>
+</body></html>

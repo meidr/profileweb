@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@layer base {
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .fill-icon, .icon-fill {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    
+    /* Subtle background pattern for visual interest without image bloat */
+    .bg-pattern {
+        background-image: radial-gradient(theme('colors.outline-variant') 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
+    /* Custom scrollbar for data table */
+    .table-container::-webkit-scrollbar {
+        height: 8px;
+        width: 8px;
+    }
+    .table-container::-webkit-scrollbar-track {
+        background: theme('colors.surface-muted');
+    }
+    .table-container::-webkit-scrollbar-thumb {
+        background-color: theme('colors.outline-variant');
+        border-radius: theme('borderRadius.full');
+    }
+
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+    }
+}

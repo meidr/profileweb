@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Public Profile - FacultyPortal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eef2ed",
+                        "surface": "#f7faf6",
+                        "surface-container-low": "#f1f4f0",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container": "#ecefeb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#73332f",
+                        "secondary-container": "#dae2fd",
+                        "error": "#ba1a1a",
+                        "surface-muted": "#f8fafc",
+                        "surface-dim": "#d8dbd7",
+                        "on-primary-fixed": "#002116",
+                        "surface-bright": "#f7faf6",
+                        "on-primary-fixed-variant": "#00513b",
+                        "inverse-primary": "#8bd6b6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#652925",
+                        "inverse-surface": "#2d312f",
+                        "on-tertiary-fixed": "#3b0908",
+                        "on-secondary-container": "#5c647a",
+                        "primary-container": "#065f46",
+                        "status-active": "#10b981",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-container": "#ffb4ad",
+                        "status-inactive": "#94a3b8",
+                        "secondary": "#565e74",
+                        "on-surface": "#181c1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#1b6b51",
+                        "outline-variant": "#bec9c2",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-variant": "#e0e3df",
+                        "border-subtle": "#e2e8f0",
+                        "surface-container-high": "#e6e9e5",
+                        "on-surface-variant": "#3f4944",
+                        "tertiary-container": "#823f3a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "status-error": "#ef4444",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8bd6b7",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "status-pending": "#f59e0b",
+                        "outline": "#6f7973",
+                        "background": "#f7faf6",
+                        "primary-fixed": "#a6f2d1",
+                        "surface-container-highest": "#e0e3df",
+                        "on-background": "#181c1a",
+                        "primary": "#004532",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed-dim": "#8bd6b6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "44px",
+                        "container-margin-desktop": "40px",
+                        "container-margin-mobile": "16px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #f8fafc; /* surface-muted */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Mobile optimization: Suppress top nav, center content */
+        .card-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f7faf6; /* surface */
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<div class="card-container md:border-x md:border-subtle md:shadow-sm">
+<!-- Top App Bar (Simplified for Mobile Profile View) -->
+<header class="w-full top-0 sticky bg-surface flex justify-center items-center h-touch-target border-b border-subtle z-10 px-container-margin-mobile">
+<span class="font-headline-md text-headline-md font-bold text-primary">FacultyPortal</span>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-container-margin-mobile py-gutter space-y-gutter">
+<!-- Profile Header Card -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl p-gutter flex flex-col items-center text-center space-y-4">
+<div class="relative w-32 h-32 rounded-full overflow-hidden border-4 border-surface-container-low shadow-sm">
+<img alt="Profile avatar" class="w-full h-full object-cover" data-alt="A professional portrait of an academic faculty member. They are smiling warmly, dressed in business casual attire suitable for a modern university environment. The lighting is soft and flattering, highlighting a professional yet approachable demeanor against a clean, neutral background. The aesthetic is corporate, modern, and aligned with a prestigious institutional authority." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQEGQwaI817U5ytlG26gtRG82is_hqXnaRA9_gjeioptIy0TnbgFaD4mIYbkyyZq3DSWcInzX0WLx_UH6LVw84kvzJmUo6I9iBrRmYFu3ZU5ZVyIubp5rmB03B-1RsYEslhd-5SgmJBWi0iPw1misC14wrJoDAogU7vUZ6o76sO6rUfebbi0sqMVww13UFuv8Fw_XeXcy81Ps9iUKWqE-N3vl3Yxb0oo935HArn9pGj2_FzTjqu9u0LzCJbBhQDikpVl6R4aDoPHE"/>
+</div>
+<div class="space-y-1">
+<h1 class="font-headline-sm text-headline-sm text-on-surface">Dr. Elena Rostova</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Professor of Computer Science</p>
+</div>
+<!-- Verified Badge -->
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-[#d1fae5] rounded-full">
+<span class="material-symbols-outlined text-[16px] text-status-active" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-sm text-label-sm text-[#065f46]">Verified Active Member</span>
+</div>
+</div>
+<!-- Details Section -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl p-gutter space-y-6">
+<!-- Institutional Info -->
+<div class="space-y-4">
+<h2 class="font-label-md text-label-md text-on-surface border-b border-subtle pb-2">Institutional Details</h2>
+<div class="grid grid-cols-1 gap-4">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">NIP / Employee ID</span>
+<span class="font-body-md text-body-md text-on-surface">UIA-882-9411</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider">Department</span>
+<span class="font-body-md text-body-md text-on-surface">College of Computing &amp; Informatics</span>
+</div>
+</div>
+</div>
+<!-- Contact Info -->
+<div class="space-y-4 pt-2">
+<h2 class="font-label-md text-label-md text-on-surface border-b border-subtle pb-2">Contact Information</h2>
+<div class="grid grid-cols-1 gap-4">
+<a class="flex items-center gap-3 p-3 rounded-lg border border-subtle hover:bg-surface-container-low transition-colors min-h-[44px]" href="mailto:erostova@university.edu">
+<span class="material-symbols-outlined text-secondary">mail</span>
+<span class="font-body-sm text-body-sm text-on-surface">erostova@university.edu</span>
+</a>
+<a class="flex items-center gap-3 p-3 rounded-lg border border-subtle hover:bg-surface-container-low transition-colors min-h-[44px]" href="tel:+15550198273">
+<span class="material-symbols-outlined text-secondary">phone</span>
+<span class="font-body-sm text-body-sm text-on-surface">(555) 019-8273</span>
+</a>
+<div class="flex items-center gap-3 p-3 rounded-lg border border-subtle min-h-[44px]">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<span class="font-body-sm text-body-sm text-on-surface">Science Hall, Room 402B</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="pt-4 space-y-3 pb-8">
+<button class="w-full flex items-center justify-center gap-2 bg-primary text-on-primary h-touch-target rounded-lg font-label-md text-label-md hover:bg-[#003828] transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+                    Request Data Change
+                </button>
+<button class="w-full flex items-center justify-center gap-2 bg-surface-container-lowest text-secondary border border-subtle h-touch-target rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">report_problem</span>
+                    Report Visibility Issue
+                </button>
+</div>
+</main>
+<!-- Footer (Simplified for Public Profile View) -->
+<footer class="w-full py-6 mt-auto border-t border-subtle bg-surface-muted px-container-margin-mobile flex flex-col items-center gap-2">
+<span class="font-body-sm text-body-sm-mobile text-secondary">© 2024 University Institutional Authority</span>
+<div class="flex gap-4">
+<a class="font-body-sm text-body-sm-mobile text-secondary hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-body-sm text-body-sm-mobile text-secondary hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</div>
+</body></html>

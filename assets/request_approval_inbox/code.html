@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Request Approval Inbox - Admin Central</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#eef2ed",
+                    "surface": "#f7faf6",
+                    "surface-container-low": "#f1f4f0",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "surface-container": "#ecefeb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#73332f",
+                    "secondary-container": "#dae2fd",
+                    "error": "#ba1a1a",
+                    "surface-muted": "#f8fafc",
+                    "surface-dim": "#d8dbd7",
+                    "on-primary-fixed": "#002116",
+                    "surface-bright": "#f7faf6",
+                    "on-primary-fixed-variant": "#00513b",
+                    "inverse-primary": "#8bd6b6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed": "#ffdad6",
+                    "tertiary": "#652925",
+                    "inverse-surface": "#2d312f",
+                    "on-tertiary-fixed": "#3b0908",
+                    "on-secondary-container": "#5c647a",
+                    "primary-container": "#065f46",
+                    "status-active": "#10b981",
+                    "on-secondary-fixed": "#131b2e",
+                    "on-tertiary-container": "#ffb4ad",
+                    "status-inactive": "#94a3b8",
+                    "secondary": "#565e74",
+                    "on-surface": "#181c1a",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-tint": "#1b6b51",
+                    "outline-variant": "#bec9c2",
+                    "secondary-fixed": "#dae2fd",
+                    "surface-variant": "#e0e3df",
+                    "border-subtle": "#e2e8f0",
+                    "surface-container-high": "#e6e9e5",
+                    "on-surface-variant": "#3f4944",
+                    "tertiary-container": "#823f3a",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb3ac",
+                    "status-error": "#ef4444",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#8bd6b7",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "status-pending": "#f59e0b",
+                    "outline": "#6f7973",
+                    "background": "#f7faf6",
+                    "primary-fixed": "#a6f2d1",
+                    "surface-container-highest": "#e0e3df",
+                    "on-background": "#181c1a",
+                    "primary": "#004532",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "primary-fixed-dim": "#8bd6b6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "touch-target": "44px",
+                    "container-margin-desktop": "40px",
+                    "container-margin-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-sm": ["Plus Jakarta Sans"],
+                    "label-md": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "body-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-muted text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Desktop) -->
+<nav class="bg-surface-container-low dark:bg-inverse-surface border-r border-subtle dark:border-outline-variant h-screen w-64 fixed left-0 top-0 hidden md:flex flex-col py-6 space-y-4 z-40">
+<div class="px-6 mb-4 flex items-center space-x-3">
+<img alt="Institution Logo" class="w-10 h-10 rounded-lg object-cover bg-surface-container-high border border-subtle" data-alt="A clean, minimalist logo of an academic institution featuring an abstract crest in dark emerald green, set against a bright, modern white background. The aesthetic is strictly professional and corporate, conveying stability and authority in a light-mode layout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmP3VCD52E8NEJ-gigH0T4DEkt29_2n7QwmT6KRdnGEUJRG1s3TD8nIF-8tXX9RRg07ge9sZuNDL9UnHmSTuSlZz4yo5EoNIodS6JWXtvH-trpYfpxpwC7hP_lKuhHPgBzhSwiuGRjOL7NWSwoV8WY4kYaTh2EsSFCiOYAPhTy1vS-AFojomY6R30MPy_KQ85anbdfj7uLN9reIjgg3F2Xp1yUZfRtBxml4UZsFkDZ6WjuF-ElP7GKeUU1EEFfZ4PidWHPc08YJqo"/>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim">Admin Central</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Staff Management</p>
+</div>
+</div>
+<button class="mx-6 mb-6 bg-primary text-on-primary h-touch-target rounded-lg font-label-md text-label-md flex items-center justify-center space-x-2 hover:bg-on-primary-fixed-variant transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 20px;">add</span>
+<span>New Profile</span>
+</button>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-size: 20px;">dashboard</span>
+<span>Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="groups" style="font-size: 20px;">groups</span>
+<span>Directory</span>
+</a>
+</li>
+<li>
+<!-- Active State -->
+<a class="flex items-center space-x-3 px-4 py-3 mx-2 my-1 rounded-lg bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary font-label-md text-label-md font-bold" href="#">
+<span class="material-symbols-outlined" data-icon="fact_check" style="font-size: 20px; font-variation-settings: 'FILL' 1;">fact_check</span>
+<span>Approvals</span>
+<span class="ml-auto bg-error text-on-error rounded-full px-2 py-0.5 text-[10px] font-bold">3</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-size: 20px;">analytics</span>
+<span>Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high hover:bg-surface-container-highest dark:hover:bg-on-secondary-fixed-variant transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings" style="font-size: 20px;">settings</span>
+<span>Settings</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-4 pb-4">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="help" style="font-size: 20px;">help</span>
+<span>Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center space-x-3 px-4 py-3 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout" style="font-size: 20px;">logout</span>
+<span>Log Out</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-subtle dark:border-outline-variant w-full top-0 sticky z-30 flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-touch-target">
+<div class="flex items-center md:hidden">
+<span class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed-dim">FacultyPortal</span>
+</div>
+<!-- Breadcrumbs / Title for Desktop -->
+<div class="hidden md:flex items-center space-x-2 text-on-surface-variant font-label-md text-label-md">
+<span>Admin Central</span>
+<span class="material-symbols-outlined" style="font-size: 16px;">chevron_right</span>
+<span class="text-primary font-bold">Approvals Inbox</span>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95 duration-150 relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<img alt="Administrator profile avatar" class="w-8 h-8 rounded-full border border-subtle cursor-pointer object-cover" data-alt="A professional headshot of an administrative staff member, female, looking confident in a well-lit office environment. The color palette is modern, dominated by neutral grays and soft whites, embodying a light-mode corporate aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Naxt4zjw-GhOGdLa2hqV2V6HTeJAYTb0jBAZH74ptuERzRxpRyiFo1lgmHiK1Ogjmd5UDOSU7gCqRNX7IEyqFee8hDAPBJhdHxq2ZaHpoXmHk_rnr0GHYfFdic-VvOPJctkkuL0f3oNYZ9_db82zp0BqzUK9TbXoxnAJmJpa66ka-wiUtKJmFkv7PF2WvAcsbIXDzAbtEYvdLJjTiwmNGT6B1tve1ByiEW0CLjpyTkWTBI5a-G6z_jHIY6vnF4mvYGPJ2-ZtWmE"/>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-container-margin-mobile md:p-container-margin-desktop w-full max-w-7xl mx-auto space-y-gutter">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Pending Requests</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Review and approve faculty data changes or visibility toggles.</p>
+</div>
+<div class="flex space-x-2 overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-full font-label-sm text-label-sm whitespace-nowrap">All (3)</button>
+<button class="bg-surface-container text-on-surface px-4 py-2 rounded-full font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">Data Change (2)</button>
+<button class="bg-surface-container text-on-surface px-4 py-2 rounded-full font-label-sm text-label-sm whitespace-nowrap hover:bg-surface-container-high transition-colors">Visibility (1)</button>
+</div>
+</div>
+<!-- Bento Grid Layout for Requests -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+<!-- Main Comparison Card (Active Request) -->
+<div class="xl:col-span-8 bg-surface-container-lowest rounded-xl border border-subtle flex flex-col h-full shadow-sm">
+<!-- Request Header -->
+<div class="p-6 border-b border-subtle flex flex-col md:flex-row md:justify-between md:items-start gap-4 bg-surface-muted/50 rounded-t-xl">
+<div class="flex items-start space-x-4">
+<img alt="Faculty profile" class="w-12 h-12 rounded-full object-cover border border-subtle mt-1" data-alt="A portrait of a male university professor wearing glasses and a dark blazer. The lighting is soft and natural, emphasizing a professional, academic mood suitable for a modern light-mode administrative interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAy_KIT8m9FJMudiZKYrLh38xKDYWuA-tY9MDBXtJRfim33MSbcDHdG5M1rK-QC3xTyC7O8j7YFJ-285YmQMH5FdeBVicyZDPkhi38nyEqrIbm6OaJ1h1fT7GFLBK92J50gqRA-wpIaRjNTM2-grLbGUJwx4b3PaqZWD2_yaLdGZOCpCf3O3odSJKUNaq5SuqqOXnfQx8U3eL_mSPkl-o8FMbcbjsMBZoDTfM_V0NaNd84BxX993nFfcg22axhuX--UGIV4iylcV_8"/>
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Dr. Alan Turing</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Dept. of Computer Science • ID: 894302</p>
+<div class="mt-2 flex items-center space-x-2">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-status-pending/10 text-status-pending font-label-sm text-[10px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-status-pending mr-1.5"></span> Pending
+                                    </span>
+<span class="font-label-sm text-label-sm text-secondary bg-secondary-container/20 px-2 py-1 rounded-lg">Title Update</span>
+</div>
+</div>
+</div>
+<div class="text-right text-on-surface-variant font-label-sm text-label-sm">
+<p>Submitted: Today, 09:41 AM</p>
+<p class="text-primary cursor-pointer hover:underline mt-1 flex items-center justify-end">View Full Profile <span class="material-symbols-outlined text-[14px] ml-1">open_in_new</span></p>
+</div>
+</div>
+<!-- Comparison View -->
+<div class="p-6 flex-1 bg-surface-container-lowest">
+<h4 class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider text-secondary">Data Comparison</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Old Data -->
+<div class="rounded-lg border border-subtle bg-surface-muted p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-3 py-1 rounded-bl-lg font-label-sm text-[10px] uppercase font-bold">Current Live</div>
+<div class="space-y-4 mt-2">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Job Title</p>
+<p class="font-body-md text-body-md text-on-surface line-through decoration-error/50">Associate Professor</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Department</p>
+<p class="font-body-md text-body-md text-on-surface">Dept. of Computer Science</p>
+</div>
+</div>
+</div>
+<!-- New Data -->
+<div class="rounded-lg border border-primary-fixed bg-primary-fixed/5 p-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary text-on-primary px-3 py-1 rounded-bl-lg font-label-sm text-[10px] uppercase font-bold">Requested Change</div>
+<div class="space-y-4 mt-2">
+<div>
+<p class="font-label-sm text-label-sm text-primary">Job Title</p>
+<p class="font-body-md text-body-md text-on-surface font-semibold bg-status-active/10 px-1 -mx-1 rounded">Full Professor, Chair of Computing</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Department</p>
+<p class="font-body-md text-body-md text-on-surface">Dept. of Computer Science</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Justification -->
+<div class="mt-6 p-4 rounded-lg bg-surface border border-subtle">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 flex items-center"><span class="material-symbols-outlined text-[16px] mr-1">chat</span> Faculty Comment</p>
+<p class="font-body-sm text-body-sm text-on-surface italic">"Recently promoted by the board effective Sept 1st. Attached tenure documentation to HR system."</p>
+</div>
+</div>
+<!-- Action Area -->
+<div class="p-6 border-t border-subtle bg-surface-muted/30 rounded-b-xl">
+<div class="mb-4">
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-2" for="admin-comment">Admin Notes (Required for Rejection)</label>
+<textarea class="w-full rounded-lg border-subtle focus:border-primary focus:ring focus:ring-primary/20 bg-surface-container-lowest text-body-sm text-on-surface resize-none p-3" id="admin-comment" placeholder="Add internal notes or reason for rejection..." rows="2"></textarea>
+</div>
+<div class="flex justify-end space-x-3">
+<button class="px-6 py-2 rounded-lg border border-subtle bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container transition-colors h-touch-target">
+                                Skip for Now
+                            </button>
+<button class="px-6 py-2 rounded-lg border border-error text-error bg-surface-container-lowest hover:bg-error/5 font-label-md text-label-md transition-colors h-touch-target flex items-center space-x-2">
+<span class="material-symbols-outlined text-[18px]">close</span>
+<span>Reject</span>
+</button>
+<button class="px-6 py-2 rounded-lg bg-primary text-on-primary hover:bg-on-primary-fixed-variant font-label-md text-label-md transition-colors h-touch-target flex items-center space-x-2 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Approve Request</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Inbox Queue Sidebar -->
+<div class="xl:col-span-4 space-y-4">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2 pl-1">Queue (2 Remaining)</h3>
+<!-- Queue Item 1 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-subtle hover:shadow-md transition-shadow cursor-pointer opacity-70 hover:opacity-100 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold font-label-sm">EH</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Emma Hamilton</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant">Research Fellow</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[18px]">visibility_off</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-2 truncate">Request to hide profile from public directory.</p>
+<div class="mt-3 flex justify-between items-center text-on-surface-variant">
+<span class="font-label-sm text-[10px]">Yesterday</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-pending/10 text-status-pending font-label-sm text-[10px]">Pending</span>
+</div>
+</div>
+<!-- Queue Item 2 -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border border-subtle hover:shadow-md transition-shadow cursor-pointer opacity-70 hover:opacity-100 flex flex-col">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center space-x-3">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-subtle" data-alt="A small avatar showing a female academic professional smiling softly. The lighting is clean and bright, fitting a light-mode corporate dashboard aesthetic with deep green accents implied in the surrounding UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEI4kLmqhZjKkc2iF800IJCMEWYRQlBByxzN_nUn792uT5N_iojzofJa7cI-HOKsH50NhER2mOAeKiuj4js8FGhnnJdA6QPCN3xnce6Cz5u75mZk5ktV5fKi_3H8MImT074WIvTJOwTXXx16qlfwMRwFzMmDDJJ6C7pM-yBUHhYmvZs2VhGTMztiBTW2Tav4Y3vt5S7wWxO62U1lhOPEC58cdMdJiL-FUMxkL0mXauoeVY_N4QnT3AzlusveKxO7d3jN9XnYFqljM"/>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Dr. Sarah Chen</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant">Bio-Engineering</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary text-[18px]">edit_document</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface mt-2 truncate">Update office hours &amp; location</p>
+<div class="mt-3 flex justify-between items-center text-on-surface-variant">
+<span class="font-label-sm text-[10px]">Oct 12</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-status-pending/10 text-status-pending font-label-sm text-[10px]">Pending</span>
+</div>
+</div>
+<!-- Recently Processed -->
+<div class="mt-8">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-3 pl-1">Recently Processed</h4>
+<div class="space-y-2">
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-muted border border-subtle">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-status-active text-[16px]">check_circle</span>
+<span class="font-body-sm text-body-sm text-on-surface">M. Davis (Bio Update)</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">2h ago</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-surface-muted border border-subtle">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-status-error text-[16px]">cancel</span>
+<span class="font-body-sm text-body-sm text-on-surface">J. Smith (Photo Upload)</span>
+</div>
+<span class="font-label-sm text-[10px] text-on-surface-variant">Yesterday</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-muted dark:bg-inverse-surface border-t border-subtle dark:border-outline-variant w-full py-8 mt-auto flex flex-col md:flex-row justify-between items-center px-container-margin-mobile md:px-container-margin-desktop gap-gutter">
+<p class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim">© 2024 University Institutional Authority</p>
+<div class="flex flex-wrap justify-center gap-4 font-body-sm text-body-sm-mobile">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-100" href="#">Privacy Policy</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-100" href="#">Accessibility</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-100" href="#">Terms of Service</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors opacity-100" href="#">Help Desk</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="bg-surface dark:bg-inverse-surface border-t border-subtle dark:border-outline-variant bg-surface-container-highest fixed bottom-0 w-full z-50 md:hidden flex justify-around items-center h-touch-target px-4 pb-safe shadow-lg">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Directory</span>
+</a>
+<!-- Active State -->
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:bg-surface-container-high tap-highlight-transparent p-2 rounded-lg relative" href="#">
+<span class="material-symbols-outlined" data-icon="all_inbox" style="font-variation-settings: 'FILL' 1;">all_inbox</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Inbox</span>
+<span class="absolute top-1 right-2 w-2 h-2 bg-error rounded-full"></span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent p-2 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Me</span>
+</a>
+</nav>
+</body></html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Employee Detail &amp; QR Management - FacultyPortal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eef2ed",
+                        "surface": "#f7faf6",
+                        "surface-container-low": "#f1f4f0",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container": "#ecefeb",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#73332f",
+                        "secondary-container": "#dae2fd",
+                        "error": "#ba1a1a",
+                        "surface-muted": "#f8fafc",
+                        "surface-dim": "#d8dbd7",
+                        "on-primary-fixed": "#002116",
+                        "surface-bright": "#f7faf6",
+                        "on-primary-fixed-variant": "#00513b",
+                        "inverse-primary": "#8bd6b6",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdad6",
+                        "tertiary": "#652925",
+                        "inverse-surface": "#2d312f",
+                        "on-tertiary-fixed": "#3b0908",
+                        "on-secondary-container": "#5c647a",
+                        "primary-container": "#065f46",
+                        "status-active": "#10b981",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary-container": "#ffb4ad",
+                        "status-inactive": "#94a3b8",
+                        "secondary": "#565e74",
+                        "on-surface": "#181c1a",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-tint": "#1b6b51",
+                        "outline-variant": "#bec9c2",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-variant": "#e0e3df",
+                        "border-subtle": "#e2e8f0",
+                        "surface-container-high": "#e6e9e5",
+                        "on-surface-variant": "#3f4944",
+                        "tertiary-container": "#823f3a",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3ac",
+                        "status-error": "#ef4444",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#8bd6b7",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "status-pending": "#f59e0b",
+                        "outline": "#6f7973",
+                        "background": "#f7faf6",
+                        "primary-fixed": "#a6f2d1",
+                        "surface-container-highest": "#e0e3df",
+                        "on-background": "#181c1a",
+                        "primary": "#004532",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "primary-fixed-dim": "#8bd6b6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "44px",
+                        "container-margin-desktop": "40px",
+                        "container-margin-mobile": "16px",
+                        "base": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "headline-sm": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", {"lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Subtle fade-in animation for tab content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface-muted text-on-surface font-body-md min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Hidden on Mobile) -->
+<nav class="h-screen w-64 fixed left-0 top-0 hidden md:flex flex-col border-r border-subtle dark:border-outline-variant bg-surface-container-low dark:bg-inverse-surface py-6 space-y-4 z-50">
+<div class="px-container-margin-mobile mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container font-headline-sm">FP</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary dark:text-primary-fixed-dim">Admin Central</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Staff Management</p>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined fill">groups</span>
+<span class="font-label-md text-label-md font-bold">Directory</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined">fact_check</span>
+<span class="font-label-md text-label-md">Approvals</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all active:opacity-80" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="px-4 mt-auto">
+<button class="w-full bg-primary text-on-primary h-touch-target rounded-lg font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                New Profile
+            </button>
+<ul class="mt-4 space-y-1">
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-on-secondary-container dark:text-secondary-fixed-dim hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar (Web) -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-inverse-surface border-b border-subtle dark:border-outline-variant flex justify-between items-center px-container-margin-mobile md:px-container-margin-desktop h-touch-target hidden md:flex">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-96 hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-subtle rounded-lg font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search directory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors flex items-center justify-center text-on-surface-variant active:scale-95 duration-150">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low dark:hover:bg-on-surface-variant transition-colors flex items-center justify-center text-on-surface-variant active:scale-95 duration-150">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-subtle overflow-hidden ml-2 cursor-pointer">
+<img alt="Administrator profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkWj79ghc3bisH3FRVrk5kH2vedP7GXQJAqyg8jyrh2ErpQbFeC3suARj2DPFBJ39fR1vxhkNC7db0PSGng5S9fvmRBpowEAHnRN9_JAJWjCWAj0GCrj42ZKXhfcOJfmy6GyFCojkITTVU7KXXYW8_kLq51XzTXF3foRwvdrmWxtjm74t_I1vEw3Kup0Bj4qB1va8QthcNVX0UyMzQusI201lJlV1FwTMgO_K_5RpqJuQ2oSa-w7qPWMpiQ25rxg-SgxTbuyrZyz8"/>
+</div>
+</div>
+</header>
+<!-- TopAppBar (Mobile) -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-inverse-surface border-b border-subtle dark:border-outline-variant flex justify-between items-center px-container-margin-mobile h-touch-target md:hidden">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">FacultyPortal</div>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-low transition-colors flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">search</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-secondary-container border border-subtle overflow-hidden">
+<img alt="Administrator profile avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwxbk8fLVp-ilQCsGAIQyu6-qmuTPlQ5inouMNzPIlR_gNo1bU-HVbe6tYQFG-hisy8Gnvl5PH1i-inLpoSe92vMN4TmVJWVobbRAs9sSdejtdgNviwnXLKEoyBqsIHgz7yY71ROV_-Cw-z_vDdaBr2VkIy8B-tNbMszEgQawAQWZGhqYkhZ5NY_D9ofd1CHfudJW5rkAhyTiJPgWR1dAGxWtGztR7GQz8V3R0D79dHKPmdNCNd22jHSmUXxyEll-Zh_vaqE5ATt0"/>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-1 p-container-margin-mobile md:p-container-margin-desktop space-y-gutter pb-24 md:pb-container-margin-desktop">
+<!-- Page Header / Breadcrumb Area -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm mb-1">
+<a class="hover:text-primary transition-colors" href="#">Directory</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-medium text-on-surface">Employee Detail</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Ahmad Fauzi</h2>
+</div>
+<div class="flex items-center gap-3 w-full md:w-auto">
+<button class="flex-1 md:flex-none h-touch-target px-4 rounded-lg bg-surface border border-subtle text-secondary font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">edit</span>
+                        Edit Profile
+                    </button>
+<button class="flex-1 md:flex-none h-touch-target px-4 rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">share</span>
+                        Share
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Profile Info -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Identity & Primary Info (Takes 8 cols on desktop) -->
+<div class="lg:col-span-8 space-y-gutter">
+<!-- Hero Card: Identity -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl p-6 lg:p-8 flex flex-col sm:flex-row items-center sm:items-start gap-6 relative overflow-hidden">
+<!-- Decorative background element -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary-fixed opacity-20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+<div class="w-32 h-32 rounded-full border-4 border-surface shadow-sm overflow-hidden shrink-0 z-10 relative">
+<img alt="A detailed, professional headshot of Ahmad Fauzi, an academic faculty member. He is smiling slightly, wearing professional attire suitable for a modern university environment. The lighting is soft and bright, creating a welcoming, light-mode aesthetic against a neutral, slightly blurred campus background." class="w-full h-full object-cover" data-alt="A detailed, professional headshot of Ahmad Fauzi, an academic faculty member. He is smiling slightly, wearing professional attire suitable for a modern university environment. The lighting is soft and bright, creating a welcoming, light-mode aesthetic against a neutral, slightly blurred campus background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaImXUNwSaEMUBErNzrWIqY7vodLBfUMX5UfpsLBEhp5apLNX-sS4de_koIoQ2KwHR7Zwl0GdpAutMjR6dETBrV5PZaid2Marxq_-NBC8XsRaCa5oYsjaxTFNxNoX3XMRJm1A2KJrPxJjFBW1jR5KsX13ihGzl8uV6m0q4nOjOm07cl9aYxc0YiHCpesex4ezox-Q_kPQmK-Tj_7svITjfPm36suTPT9S9FsmwYzZbYh8rGQ5XcGj2L-nKbrXx8Dxm_sBO0vUDIgY"/>
+</div>
+<div class="flex-1 text-center sm:text-left z-10">
+<div class="flex flex-col sm:flex-row justify-between items-center sm:items-start gap-4 mb-2">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Ahmad Fauzi, Ph.D.</h3>
+<p class="font-body-lg text-body-lg text-secondary">Associate Professor, Computer Science</p>
+</div>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-status-active/10 text-status-active font-label-sm text-label-sm border border-status-active/20">
+<span class="w-2 h-2 rounded-full bg-status-active mr-2"></span>
+                                    Active
+                                </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-4 max-w-2xl leading-relaxed">
+                                Dr. Fauzi specializes in human-computer interaction and modern UI/UX paradigms. He has been with the university since 2018, leading several research initiatives in accessibility and responsive design frameworks.
+                            </p>
+<div class="flex flex-wrap gap-2 mt-6 justify-center sm:justify-start">
+<span class="px-3 py-1 bg-surface-container-low border border-subtle rounded-md font-label-sm text-label-sm text-on-surface-variant">Tenured</span>
+<span class="px-3 py-1 bg-surface-container-low border border-subtle rounded-md font-label-sm text-label-sm text-on-surface-variant">Dept. Head</span>
+<span class="px-3 py-1 bg-surface-container-low border border-subtle rounded-md font-label-sm text-label-sm text-on-surface-variant">Research Council</span>
+</div>
+</div>
+</div>
+<!-- Details Tab Container -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl overflow-hidden">
+<!-- Tab Header -->
+<div class="flex border-b border-subtle bg-surface-muted overflow-x-auto no-scrollbar">
+<button class="tab-btn flex-1 min-w-[120px] py-4 px-6 font-label-md text-label-md text-primary border-b-2 border-primary bg-surface transition-colors" data-target="tab-personal">
+                                Personal Info
+                            </button>
+<button class="tab-btn flex-1 min-w-[120px] py-4 px-6 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border-b-2 border-transparent" data-target="tab-employment">
+                                Employment
+                            </button>
+<button class="tab-btn flex-1 min-w-[120px] py-4 px-6 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors border-b-2 border-transparent" data-target="tab-contact">
+                                Contact
+                            </button>
+</div>
+<!-- Tab Content: Personal Info -->
+<div class="tab-content active p-6 lg:p-8 space-y-6" id="tab-personal">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Full Legal Name</p>
+<p class="font-body-md text-body-md text-on-surface">Ahmad Fauzi bin Hassan</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Preferred Name</p>
+<p class="font-body-md text-body-md text-on-surface">Ahmad</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Date of Birth</p>
+<p class="font-body-md text-body-md text-on-surface">15 October 1982</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Gender</p>
+<p class="font-body-md text-body-md text-on-surface">Male</p>
+</div>
+<div class="sm:col-span-2 pt-4 border-t border-subtle">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Biography Highlights</p>
+<p class="font-body-md text-body-md text-on-surface mt-2">Ph.D. in Computer Science, University of Technology. M.Sc. in Human-Computer Interaction.</p>
+</div>
+</div>
+</div>
+<!-- Tab Content: Employment -->
+<div class="tab-content p-6 lg:p-8 space-y-6" id="tab-employment">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Employee ID</p>
+<p class="font-body-md text-body-md text-on-surface font-mono">EMP-2018-0492</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Department</p>
+<p class="font-body-md text-body-md text-on-surface">Faculty of Computer Science</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Date of Hire</p>
+<p class="font-body-md text-body-md text-on-surface">12 August 2018</p>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Reports To</p>
+<div class="flex items-center gap-2 mt-1">
+<div class="w-6 h-6 rounded-full bg-secondary-container overflow-hidden">
+<img alt="Dean profile picture" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaaoJNHRt0nO6s9PqKhNleFmHNSSteLI5trXx_wnhpyKwMGcq-FclmyeD7xvkFbDFxKtS5DzLcB-rf_3WqejjGXGSnl28nqUVxRUMbu8PezLtEA5WzdjYCp4UUk3VFGQIxrG0rYiZHGPwK0ZJdqzyGJPwN8nkmpjjItM-28tNCIRRih9jQxKLaytGrZ3WQXCC-V_Y6B_WC6ox3L49neGC0RO7H26BqBWpmRHURSxeR9yljPA6IuHgTVBz3FnDLdj1-sgErIKXIZXM"/>
+</div>
+<p class="font-body-md text-body-md text-primary hover:underline cursor-pointer">Dr. Sarah Jenkins</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab Content: Contact -->
+<div class="tab-content p-6 lg:p-8 space-y-6" id="tab-contact">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Institutional Email</p>
+<a class="font-body-md text-body-md text-primary hover:underline flex items-center gap-2 mt-1" href="mailto:ahmad.fauzi@university.edu">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+                                        ahmad.fauzi@university.edu
+                                    </a>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Office Phone</p>
+<p class="font-body-md text-body-md text-on-surface flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[18px]">deskphone</span>
+                                        +1 (555) 123-4567 ext. 890
+                                    </p>
+</div>
+<div class="sm:col-span-2">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1">Office Location</p>
+<p class="font-body-md text-body-md text-on-surface flex items-center gap-2 mt-1">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+                                        Building 4, Room 402B (North Campus)
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: QR Management & Actions (Takes 4 cols on desktop) -->
+<div class="lg:col-span-4 space-y-gutter flex flex-col">
+<!-- QR Code Management Card -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl p-6 flex flex-col h-full">
+<div class="flex items-center gap-2 mb-4 border-b border-subtle pb-4">
+<span class="material-symbols-outlined text-primary">qr_code_2</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Public Profile QR</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+                            Scan this code to view the public-facing faculty directory profile for Ahmad Fauzi.
+                        </p>
+<!-- QR Preview Area -->
+<div class="flex-1 flex flex-col items-center justify-center bg-surface-muted rounded-lg border border-subtle p-6 mb-6">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-subtle relative group">
+<!-- Dummy QR Code Graphic using inline SVG to avoid base64 data URIs per instructions -->
+<svg class="text-on-surface" fill="none" height="150" viewbox="0 0 150 150" width="150" xmlns="http://www.w3.org/2000/svg">
+<rect fill="white" height="150" width="150"></rect>
+<path d="M10 10H50V50H10V10ZM20 20V40H40V20H20Z" fill="currentColor"></path>
+<path d="M100 10H140V50H100V10ZM110 20V40H130V20H110Z" fill="currentColor"></path>
+<path d="M10 100H50V140H10V100ZM20 110V130H40V110H20Z" fill="currentColor"></path>
+<rect fill="currentColor" height="10" width="10" x="60" y="10"></rect>
+<rect fill="currentColor" height="10" width="10" x="80" y="10"></rect>
+<rect fill="currentColor" height="10" width="10" x="60" y="30"></rect>
+<rect fill="currentColor" height="10" width="30" x="80" y="30"></rect>
+<rect fill="currentColor" height="10" width="10" x="10" y="60"></rect>
+<rect fill="currentColor" height="10" width="40" x="30" y="60"></rect>
+<rect fill="currentColor" height="30" width="10" x="80" y="60"></rect>
+<rect fill="currentColor" height="10" width="40" x="100" y="60"></rect>
+<rect fill="currentColor" height="10" width="30" x="10" y="80"></rect>
+<rect fill="currentColor" height="10" width="20" x="50" y="80"></rect>
+<rect fill="currentColor" height="10" width="10" x="100" y="80"></rect>
+<rect fill="currentColor" height="10" width="20" x="120" y="80"></rect>
+<rect fill="currentColor" height="10" width="30" x="60" y="100"></rect>
+<rect fill="currentColor" height="10" width="10" x="100" y="100"></rect>
+<rect fill="currentColor" height="40" width="20" x="120" y="100"></rect>
+<rect fill="currentColor" height="20" width="10" x="60" y="120"></rect>
+<rect fill="currentColor" height="10" width="30" x="80" y="120"></rect>
+<rect fill="currentColor" height="10" width="10" x="100" y="130"></rect>
+</svg>
+<div class="absolute inset-0 bg-inverse-surface/80 rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer backdrop-blur-sm">
+<span class="material-symbols-outlined text-white text-[32px]">zoom_in</span>
+</div>
+</div>
+<div class="mt-4 w-full">
+<label class="font-label-sm text-label-sm text-on-surface-variant block mb-1">Direct Link</label>
+<div class="flex items-center">
+<input class="w-full bg-surface border border-subtle rounded-l-lg py-2 px-3 font-body-sm text-body-sm text-on-surface focus:outline-none" readonly="" type="text" value="https://faculty.edu/p/ahmad-fauzi"/>
+<button class="bg-surface-container-low border border-l-0 border-subtle rounded-r-lg px-3 py-2 hover:bg-surface-container-high transition-colors" title="Copy Link">
+<span class="material-symbols-outlined text-[18px] text-secondary">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Download Actions -->
+<div class="space-y-3 mt-auto">
+<button class="w-full h-touch-target rounded-lg bg-surface border border-subtle text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">image</span>
+                                Download PNG
+                            </button>
+<button class="w-full h-touch-target rounded-lg bg-surface border border-subtle text-on-surface font-label-md text-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[20px]">polyline</span>
+                                Download SVG
+                            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Request History Section (Full Width Bottom) -->
+<div class="bg-surface-container-lowest border border-subtle rounded-xl overflow-hidden mt-gutter">
+<div class="p-6 border-b border-subtle flex justify-between items-center bg-surface-muted">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">history</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Request History &amp; Updates</h3>
+</div>
+<button class="text-primary font-label-sm text-label-sm hover:underline">View All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-subtle">
+<th class="py-3 px-6 font-label-md text-label-md text-on-surface-variant font-medium">Date</th>
+<th class="py-3 px-6 font-label-md text-label-md text-on-surface-variant font-medium">Type</th>
+<th class="py-3 px-6 font-label-md text-label-md text-on-surface-variant font-medium">Description</th>
+<th class="py-3 px-6 font-label-md text-label-md text-on-surface-variant font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-subtle">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Oct 12, 2024</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Profile Update</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Updated biography and office location.</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-status-active/10 text-status-active font-label-sm text-label-sm border border-status-active/20">
+                                        Approved
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Sep 05, 2024</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Visibility Change</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Set mobile phone number to private.</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-status-active/10 text-status-active font-label-sm text-label-sm border border-status-active/20">
+                                        Approved
+                                    </span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Aug 20, 2024</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Title Change</td>
+<td class="py-4 px-6 font-body-sm text-body-sm text-on-surface">Promoted to Associate Professor.</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-variant text-on-surface-variant font-label-sm text-label-sm border border-outline-variant">
+                                        System Automated
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-8 mt-auto border-t border-subtle dark:border-outline-variant bg-surface-muted dark:bg-inverse-surface flex flex-col md:flex-row justify-between items-center px-container-margin-mobile md:px-container-margin-desktop gap-gutter z-10">
+<p class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim">© 2024 University Institutional Authority</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Accessibility</a>
+<a class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm-mobile text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Help Desk</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 md:hidden bg-surface dark:bg-inverse-surface border-t border-subtle dark:border-outline-variant shadow-lg h-touch-target px-4 pb-safe flex justify-around items-center">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent w-16 h-full" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold active:bg-surface-container-high tap-highlight-transparent w-16 h-full" href="#">
+<span class="material-symbols-outlined fill">search</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Directory</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent w-16 h-full" href="#">
+<span class="material-symbols-outlined">all_inbox</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant active:bg-surface-container-high tap-highlight-transparent w-16 h-full" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm-mobile mt-1">Me</span>
+</a>
+</nav>
+<script>
+        // Simple Tab Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active states from all buttons
+                    tabBtns.forEach(b => {
+                        b.classList.remove('text-primary', 'border-primary', 'bg-surface');
+                        b.classList.add('text-on-surface-variant', 'border-transparent');
+                    });
+                    
+                    // Add active state to clicked button
+                    btn.classList.add('text-primary', 'border-primary', 'bg-surface');
+                    btn.classList.remove('text-on-surface-variant', 'border-transparent');
+
+                    // Hide all contents
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+
+                    // Show target content
+                    const targetId = btn.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        });
+    </script>
+</body></html>
